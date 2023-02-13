@@ -1,4 +1,4 @@
-# MTLibrary
+# libmt
 The project provides common constructs that are useful for multithreading.
 
 ![shields.io](https://img.shields.io/github/license/saltstack/salt)
