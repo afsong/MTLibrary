@@ -1,3 +1,4 @@
-- considering which constructs are often used
--  implement a type-safe implementation 
--  using modern C++20 features 
+TODO:
+- consider which constructs are often used
+- implement a type-safe implementation 
+- use modern C++20 features 
