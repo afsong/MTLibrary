@@ -47,8 +47,8 @@ This template is the result of learnings from many previous projects and should 
 ### Adjust the template to your needs
 
 - Use this repo [as a template](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
-- Replace all occurrences of "Mt" in the relevant CMakeLists.txt with the name of your project
-  - Capitalization matters here: `Mt` means the name of the project, while `mt` is used in file names.
+- Replace all occurrences of "mt" in the relevant CMakeLists.txt with the name of your project
+  - Capitalization matters here: `mt` means the name of the project, while `mt` is used in file names.
   - Remember to rename the `include/mt` directory to use your project's lowercase name and update all relevant `#include`s accordingly.
 - Replace the source files with your own
 - For header-only libraries: see the comments in [CMakeLists.txt](CMakeLists.txt)
@@ -68,7 +68,7 @@ Use the following command to build and run the executable target.
 ```bash
 cmake -S standalone -B build/standalone
 cmake --build build/standalone
-./build/standalone/Mt --help
+./build/standalone/mt --help
 ```
 
 ### Build and run test suite
@@ -81,7 +81,7 @@ cmake --build build/test
 CTEST_OUTPUT_ON_FAILURE=1 cmake --build build/test --target test
 
 # or simply call the executable: 
-./build/test/MtTests
+./build/test/mtTests
 ```
 
 To collect code coverage information, run CMake with the `-DENABLE_TEST_COVERAGE=1` option.
@@ -132,11 +132,11 @@ cmake -S all -B build
 cmake --build build
 
 # run tests
-./build/test/MtTests
+./build/test/mtTests
 # format code
 cmake --build build --target fix-format
 # run standalone
-./build/standalone/Mt --help
+./build/standalone/mt --help
 # build docs
 cmake --build build --target GenerateDocs
 ```
