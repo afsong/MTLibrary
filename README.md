@@ -1,5 +1,5 @@
 # libmt
-The project provides common constructs that are useful for multithreading.
+The project provides common constructs that are useful for mtthreading.
 
 ![shields.io](https://img.shields.io/github/license/saltstack/salt)
 ![shields.io](https://img.shields.io/github/issues/afsong/libmt)
@@ -7,7 +7,7 @@ The project provides common constructs that are useful for multithreading.
 
 
 ## Motivation
-STL does not provide much beyond basic threads and mutexes in terms of multithreading support. My goal is to provide common constructs that are useful such as thread pools and job queues.
+STL does not provide much beyond basic threads and mutexes in terms of mtthreading support. My goal is to provide common constructs that are useful such as thread pools and job queues.
 
 The main focus as of now it to build something modular, that fits general purpose programming. After that, I'm planning on improving performance if time allows.
 
@@ -47,9 +47,9 @@ This template is the result of learnings from many previous projects and should 
 ### Adjust the template to your needs
 
 - Use this repo [as a template](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
-- Replace all occurrences of "Greeter" in the relevant CMakeLists.txt with the name of your project
-  - Capitalization matters here: `Greeter` means the name of the project, while `greeter` is used in file names.
-  - Remember to rename the `include/greeter` directory to use your project's lowercase name and update all relevant `#include`s accordingly.
+- Replace all occurrences of "Mt" in the relevant CMakeLists.txt with the name of your project
+  - Capitalization matters here: `Mt` means the name of the project, while `mt` is used in file names.
+  - Remember to rename the `include/mt` directory to use your project's lowercase name and update all relevant `#include`s accordingly.
 - Replace the source files with your own
 - For header-only libraries: see the comments in [CMakeLists.txt](CMakeLists.txt)
 - Add [your project's codecov token](https://docs.codecov.io/docs/quick-start) to your project's github secrets under `CODECOV_TOKEN`
@@ -68,7 +68,7 @@ Use the following command to build and run the executable target.
 ```bash
 cmake -S standalone -B build/standalone
 cmake --build build/standalone
-./build/standalone/Greeter --help
+./build/standalone/Mt --help
 ```
 
 ### Build and run test suite
@@ -81,7 +81,7 @@ cmake --build build/test
 CTEST_OUTPUT_ON_FAILURE=1 cmake --build build/test --target test
 
 # or simply call the executable: 
-./build/test/GreeterTests
+./build/test/MtTests
 ```
 
 To collect code coverage information, run CMake with the `-DENABLE_TEST_COVERAGE=1` option.
@@ -132,11 +132,11 @@ cmake -S all -B build
 cmake --build build
 
 # run tests
-./build/test/GreeterTests
+./build/test/MtTests
 # format code
 cmake --build build --target fix-format
 # run standalone
-./build/standalone/Greeter --help
+./build/standalone/Mt --help
 # build docs
 cmake --build build --target GenerateDocs
 ```
