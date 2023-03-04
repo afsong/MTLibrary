@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+/build*
+/.vscode
+/cpm_modules
+.DS_Store

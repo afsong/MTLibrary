@@ -5,6 +5,7 @@
 #include <queue>
 #include <mutex>
 
+namespace mt {
 template <typename T>
 class job_queue
 {
@@ -48,6 +49,7 @@ T job_queue<T>::pop_job()
     T ret = task_queue.front();
     task_queue.pop();
     return ret;
+}
 }
 
 #endif
