@@ -20,6 +20,7 @@ private:
     std::queue<T> task_queue;
     std::mutex mutex;
     size_t capacity;
+
 };
 
 template <typename T>
@@ -36,7 +37,8 @@ job_queue<T>::~job_queue()
 template <typename T>
 void job_queue<T>::add_job(const T &job)
 {
-    // check for size here
+    std::lock_guard<std::mutex> lock(mutex);
+
     if (task_queue.size() < capacity)
     {
         task_queue.push(job);
@@ -45,7 +47,7 @@ void job_queue<T>::add_job(const T &job)
 
 template <typename T>
 T job_queue<T>::pop_job()
-{
+{   std::lock_guard<std::mutex> lock(mutex);
     T ret = task_queue.front();
     task_queue.pop();
     return ret;
