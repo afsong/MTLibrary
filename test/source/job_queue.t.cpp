@@ -1,6 +1,6 @@
 #include <mt/job_queue.h>
 #include <doctest/doctest.h>
-
+#include <thread>
 TEST_CASE("TestJobQueueConstructor")
 {
     mt::job_queue<int> jq(100);
@@ -28,6 +28,35 @@ TEST_CASE("TestJobQueueAddAboveCap"){
     CHECK_EQ(jq.size(),100);
     
 }
+
+TEST_CASE("TestJobQueue_I")
+{
+    mt::job_queue<int> jq(100);
+    int input_total = 0;
+    int output_total = 0;
+
+    auto producer = [&]() {
+        for (int i = 0; i < static_cast<int>(jq.cap()); ++i) {
+            jq.add_job(i);
+            input_total += i;
+        }
+    };
+
+    auto consumer = [&]() {
+        while (jq.size() > 0) {
+            output_total += jq.pop_job();
+        }
+    };
+
+    std::jthread thr1(producer);
+    std::jthread thr2(consumer);
+
+    thr1.join();
+    thr2.join();
+    CHECK_EQ(input_total, output_total);
+}
+
+
 
 TEST_CASE("TestJobQueuePop"){
     mt::job_queue<int> jq(100);
