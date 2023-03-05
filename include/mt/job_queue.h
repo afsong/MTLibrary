@@ -16,6 +16,9 @@ public:
     void add_job(const T &job);
     T pop_job();
 
+    size_t size() const;
+    size_t cap() const;
+
 private:
     std::queue<T> task_queue;
     std::mutex mutex;
@@ -47,11 +50,29 @@ void job_queue<T>::add_job(const T &job)
 
 template <typename T>
 T job_queue<T>::pop_job()
-{   std::lock_guard<std::mutex> lock(mutex);
+{   
+    std::lock_guard<std::mutex> lock(mutex);
+    if(task_queue.size()<=0){
+        return T();
+    }
     T ret = task_queue.front();
     task_queue.pop();
+    
     return ret;
 }
+
+template <typename T>
+size_t job_queue<T>::size() const
+{
+    return task_queue.size();
+}
+
+
+template <typename T>
+size_t job_queue<T>::cap() const{
+    return capacity;
+}
+
 }
 
 #endif
