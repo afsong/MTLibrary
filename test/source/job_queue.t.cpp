@@ -49,9 +49,9 @@ TEST_CASE("TestJobQueue_I")
         }
     };
 
-    std::jthread thr1(producer);
+    std::thread thr1(producer);
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
-    std::jthread thr2(consumer);
+    std::thread thr2(consumer);
 
     thr1.join();
     thr2.join();
