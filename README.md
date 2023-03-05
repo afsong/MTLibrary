@@ -1,6 +1,8 @@
 # libmt
 The project provides common constructs that are useful for mtthreading.
 
+[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/MacOS/badge.svg)](https://github.com/afsong/libmt/actions)
+[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/Ubuntu/badge.svg)](https://github.com/afsong/libmt/actions)
 ![shields.io](https://img.shields.io/github/license/saltstack/salt)
 ![shields.io](https://img.shields.io/github/issues/afsong/libmt)
 [![codecov](https://codecov.io/gh/afsong/libmt/branch/master/graph/badge.svg)](https://codecov.io/gh/afsong/libmt)
