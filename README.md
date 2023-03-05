@@ -3,7 +3,7 @@ The project provides common constructs that are useful for mtthreading.
 
 ![shields.io](https://img.shields.io/github/license/saltstack/salt)
 ![shields.io](https://img.shields.io/github/issues/afsong/libmt)
-
+[![codecov](https://codecov.io/gh/afsong/libmt/branch/master/graph/badge.svg)](https://codecov.io/gh/afsong/libmt)
 
 
 ## Motivation
