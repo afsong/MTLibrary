@@ -50,10 +50,12 @@ TEST_CASE("TestJobQueue_I")
     };
 
     std::jthread thr1(producer);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
     std::jthread thr2(consumer);
 
     thr1.join();
     thr2.join();
+    
     CHECK_EQ(input_total, output_total);
 }
 
