@@ -1,6 +1,7 @@
 #include <mt/job_queue.h>
 #include <doctest/doctest.h>
 #include <thread>
+
 TEST_CASE("TestJobQueueConstructor")
 {
     mt::job_queue<int> jq(100);
