@@ -50,9 +50,14 @@ void job_queue<T>::add_job(const T &job)
 
 template <typename T>
 T job_queue<T>::pop_job()
-{   std::lock_guard<std::mutex> lock(mutex);
+{   
+    std::lock_guard<std::mutex> lock(mutex);
+    if(task_queue.size()<=0){
+        return T();
+    }
     T ret = task_queue.front();
     task_queue.pop();
+    
     return ret;
 }
 
