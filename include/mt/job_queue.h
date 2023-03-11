@@ -5,7 +5,7 @@
 #include <mutex>
 #include <queue>
 
-namespace mt {
+namespace Mt {
   template <typename T> class job_queue {
   public:
     job_queue(size_t cap);
