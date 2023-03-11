@@ -1,7 +1,10 @@
 name: cpp-linter
 
-on: pull_request
-
+on: 
+  push:
+    paths-ignore: "docs/**"
+  pull_request:
+    paths-ignore: "docs/**"
 jobs:
   cpp-linter:
     runs-on: ubuntu-latest
