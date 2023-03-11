@@ -1,11 +1,11 @@
-#ifndef job_queue_H
-#define job_queue_H
+#ifndef job_queue_HPP
+#define job_queue_HPP
 
 #include <cstddef>
 #include <mutex>
 #include <queue>
 
-namespace Mt {
+namespace mt {
   template <typename T> class job_queue {
   public:
     job_queue(size_t cap);
