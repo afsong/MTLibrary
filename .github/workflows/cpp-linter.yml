@@ -17,8 +17,9 @@ jobs:
         with:
           style: file
 
+      - name: install clang
+        run: sudo apt update -y && sudo apt install clang -y
+
       - name: Fail fast?!
         if: steps.linter.outputs.checks-failed > 0
-        # run: echo "Some files failed the linting checks!"
-        # for actual deployment
         run: exit 1
