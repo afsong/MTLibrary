@@ -22,8 +22,7 @@ namespace mt {
         size_t capacity;
     };
 
-    template <typename T> job_queue<T>::job_queue(size_t cap)
-        : task_queue(), capacity(cap) {}
+    template <typename T> job_queue<T>::job_queue(size_t cap) : task_queue(), capacity(cap) {}
 
     template <typename T> void job_queue<T>::add_job(const T &job) {
         std::lock_guard<std::mutex> lock(mutex);

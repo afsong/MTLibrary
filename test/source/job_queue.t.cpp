@@ -1,6 +1,6 @@
 #include <doctest/doctest.h>
-#include <mt/job_queue.hpp>
 
+#include <mt/job_queue.hpp>
 #include <thread>
 
 TEST_CASE("TestJobQueueConstructor") {
