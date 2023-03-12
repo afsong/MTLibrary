@@ -38,6 +38,7 @@ jobs:
         with:
           style: file
           database: build/
+          ignore: '.github|test'
 
       - name: Fail fast?!
         if: steps.linter.outputs.checks-failed > 0
