@@ -1,29 +1,33 @@
-cmake_minimum_required(VERSION 3.14...3.22)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.14...3.22)
 
-project(mtStandalone LANGUAGES CXX)
+PROJECT(mtStandalone LANGUAGES CXX)
 
 # --- Import tools ----
 
-include(../cmake/tools.cmake)
+INCLUDE(../cmake/tools.cmake)
 
 # ---- Dependencies ----
 
-include(../cmake/CPM.cmake)
+INCLUDE(../cmake/CPM.cmake)
 
-CPMAddPackage(
-  GITHUB_REPOSITORY jarro2783/cxxopts
-  VERSION 3.0.0
-  OPTIONS "CXXOPTS_BUILD_EXAMPLES NO" "CXXOPTS_BUILD_TESTS NO" "CXXOPTS_ENABLE_INSTALL YES"
-)
+CPMADDPACKAGE(
+    GITHUB_REPOSITORY
+    jarro2783/cxxopts
+    VERSION
+    3.0.0
+    OPTIONS
+    "CXXOPTS_BUILD_EXAMPLES NO"
+    "CXXOPTS_BUILD_TESTS NO"
+    "CXXOPTS_ENABLE_INSTALL YES")
 
-CPMAddPackage(NAME mt SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
+CPMADDPACKAGE(NAME mt SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 
 # ---- Create standalone executable ----
 
-file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
+FILE(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
 
-add_executable(${PROJECT_NAME} ${sources})
+ADD_EXECUTABLE(${PROJECT_NAME} ${sources})
 
-set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 20 OUTPUT_NAME "mt")
+SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES CXX_STANDARD 20 OUTPUT_NAME "mt")
 
-target_link_libraries(${PROJECT_NAME} mt::mt cxxopts)
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} mt::mt cxxopts)
