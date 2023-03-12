@@ -1,6 +1,3 @@
 
 
-int main() 
-{
-  return 1;
-}
+auto main() -> int { return 1; }

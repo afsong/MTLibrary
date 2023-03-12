@@ -31,6 +31,19 @@ jobs:
       - name: build
         run: cmake --build build -j4
 
+      - uses: cpp-linter/cpp-linter-action@v2
+        id: linter
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          style: file
+          database: build/
+          ignore: '.github|test'
+
+      - name: Fail fast?!
+        if: steps.linter.outputs.checks-failed > 0
+        run: exit 1
+
       - name: test
         run: |
           cd build
