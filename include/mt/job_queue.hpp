@@ -1,5 +1,5 @@
-#ifndef __job__queue_H__
-#define __job__queue_H__
+#ifndef job_queue_HPP
+#define job_queue_HPP
 
 #include <cstddef>
 #include <mutex>

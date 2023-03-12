@@ -1,5 +1,5 @@
 #include <doctest/doctest.h>
-#include <mt/job_queue.h>
+#include <mt/job_queue.hpp>
 
 #include <thread>
 
