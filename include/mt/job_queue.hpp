@@ -9,13 +9,12 @@ namespace mt {
     template <typename T> class job_queue {
       public:
         job_queue(size_t cap);
-        ~job_queue();
 
         void add_job(const T &job);
-        T pop_job();
+        auto pop_job() -> T;
 
-        size_t size() const;
-        size_t cap() const;
+        [[nodiscard]] auto size() const -> size_t;
+        [[nodiscard]] auto cap() const -> size_t;
 
       private:
         std::queue<T> task_queue;
@@ -24,9 +23,7 @@ namespace mt {
     };
 
     template <typename T> job_queue<T>::job_queue(size_t cap)
-        : task_queue(), mutex(), capacity(cap) {}
-
-    template <typename T> job_queue<T>::~job_queue() {}
+        : task_queue(), capacity(cap) {}
 
     template <typename T> void job_queue<T>::add_job(const T &job) {
         std::lock_guard<std::mutex> lock(mutex);
@@ -36,7 +33,7 @@ namespace mt {
         }
     }
 
-    template <typename T> T job_queue<T>::pop_job() {
+    template <typename T> auto job_queue<T>::pop_job() -> T {
         std::lock_guard<std::mutex> lock(mutex);
         if (task_queue.size() <= 0) {
             return T();
@@ -47,9 +44,9 @@ namespace mt {
         return ret;
     }
 
-    template <typename T> size_t job_queue<T>::size() const { return task_queue.size(); }
+    template <typename T> auto job_queue<T>::size() const -> size_t { return task_queue.size(); }
 
-    template <typename T> size_t job_queue<T>::cap() const { return capacity; }
+    template <typename T> auto job_queue<T>::cap() const -> size_t { return capacity; }
 
 }  // namespace mt
 
