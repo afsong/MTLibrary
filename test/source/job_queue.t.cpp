@@ -1,37 +1,33 @@
-#include <mt/job_queue.h>
 #include <doctest/doctest.h>
+#include <mt/job_queue.h>
+
 #include <thread>
 
-TEST_CASE("TestJobQueueConstructor")
-{
+TEST_CASE("TestJobQueueConstructor") {
     mt::job_queue<int> jq(100);
 
     CHECK_EQ(jq.size(), 0);
     CHECK_EQ(jq.cap(), 100);
 }
 
-
-TEST_CASE("TestJobQueueAdd"){
+TEST_CASE("TestJobQueueAdd") {
     mt::job_queue<int> jq(100);
 
     jq.add_job(5);
-    CHECK_EQ(jq.size(),1);
+    CHECK_EQ(jq.size(), 1);
     jq.add_job(10);
-    CHECK_EQ(jq.size(),2);
-
+    CHECK_EQ(jq.size(), 2);
 }
-TEST_CASE("TestJobQueueAddAboveCap"){
+TEST_CASE("TestJobQueueAddAboveCap") {
     mt::job_queue<int> jq(100);
-    for (int i =0;i<100;i++){
+    for (int i = 0; i < 100; i++) {
         jq.add_job(1);
     }
     jq.add_job(2);
-    CHECK_EQ(jq.size(),100);
-    
+    CHECK_EQ(jq.size(), 100);
 }
 
-TEST_CASE("TestJobQueue_I")
-{
+TEST_CASE("TestJobQueue_I") {
     mt::job_queue<int> jq(100);
     int input_total = 0;
     int output_total = 0;
@@ -55,29 +51,26 @@ TEST_CASE("TestJobQueue_I")
 
     thr1.join();
     thr2.join();
-    
+
     CHECK_EQ(input_total, output_total);
 }
 
-
-
-TEST_CASE("TestJobQueuePop"){
+TEST_CASE("TestJobQueuePop") {
     mt::job_queue<int> jq(100);
 
     jq.add_job(5);
     jq.add_job(10);
     int num = jq.pop_job();
-    CHECK_EQ(num,5);
-    
+    CHECK_EQ(num, 5);
 }
-TEST_CASE("TestJobQueuePopEmptyQueue"){
+TEST_CASE("TestJobQueuePopEmptyQueue") {
     mt::job_queue<int> jq(100);
 
     jq.add_job(5);
     int num = jq.pop_job();
-    CHECK_EQ(num,5);
+    CHECK_EQ(num, 5);
 
     num = jq.pop_job();
-    CHECK_EQ(num,0);
-    CHECK_EQ(jq.size(),0);
+    CHECK_EQ(num, 0);
+    CHECK_EQ(jq.size(), 0);
 }
