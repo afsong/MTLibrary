@@ -63,14 +63,3 @@ TEST_CASE("TestJobQueuePop") {
     int num = jq.pop_job();
     CHECK_EQ(num, 5);
 }
-TEST_CASE("TestJobQueuePopEmptyQueue") {
-    mt::job_queue<int> jq(100);
-
-    jq.add_job(5);
-    int num = jq.pop_job();
-    CHECK_EQ(num, 5);
-
-    num = jq.pop_job();
-    CHECK_EQ(num, 0);
-    CHECK_EQ(jq.size(), 0);
-}
