@@ -14,6 +14,23 @@ STL does not provide much beyond basic threads and mutexes in terms of mtthreadi
 
 The main focus as of now it to build something modular, that fits general purpose programming. After that, I'm planning on improving performance if time allows.
 
+## How to use the library
+Everything in `libmt` resides in the `mt` namespace. For instance, if you'd like to get started with a multi-purpose job queue, you'd have to do this in your code:
+
+```C++
+#include <job_queue.hpp>
+
+struct Widget {
+    // some information here
+};
+
+int main()
+{
+    mt::job_queue<Widget> jq;
+
+    // start using jq here :)
+}
+```
 
 <!-- [![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/MacOS/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
 [![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/Windows/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
