@@ -43,7 +43,11 @@ namespace mt {
         return ret;
     }
 
-    template <typename T> auto job_queue<T>::size() const -> size_t { return task_queue.size(); }
+    template <typename T> auto job_queue<T>::size() const -> size_t 
+    {
+        std::lock_guard<std::mutex> lock(mutex); 
+        return task_queue.size(); 
+    }
 
     template <typename T> auto job_queue<T>::cap() const -> size_t { return capacity; }
 
