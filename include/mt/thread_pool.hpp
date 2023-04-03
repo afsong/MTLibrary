@@ -1,65 +1,63 @@
 #ifndef thread_pool_HPP
 #define thread_pool_HPP
 
-#include <stddef.h>
-
+#include <cstddef>
+#include <mt/job_queue.hpp>
 #include <thread>
-
-#include "job_queue.hpp"
+#include <atomic>
 
 namespace mt {
-    template <typename job_t, typename func_t> class thread_pool {
+    template <typename JOB, typename FUNC> class thread_pool {
       public:
-        thread_pool(size_t cap, job_t type, func_t function);
-        int submit_job(job_t job);
-        bool terminate();
+        static constexpr size_t DEF_NUM_THREADS = 4;
 
-        size_t size;
+        thread_pool(size_t cap, FUNC func);
+        auto submit_job(const JOB& job) -> bool;
+        bool terminate();
 
       private:
         void thread_loop();
 
-        bool should_run = true;
-
-        std::vector<std::thread> worker;
-        mt::job_queue<job_t> jq;
-        func_t handle;
+        std::atomic<bool> flg_active;
+        size_t queue_cap;
+        std::vector<std::jthread> workers;
+        mt::job_queue<JOB> jq;
+        FUNC handle;
     };
-    template <size_t size, typename job_t, typename func_t>
-    thread_pool<size, job_t, func_t>::thread_pool(size cap, job_t job, func_t function)
-        : size(cap), handle(function) {
-        jp(size);
-        for (int i = 0; i < size; i++) {
-            worker.push_back(std::thread(handle, i));
+
+    template <typename JOB, typename FUNC>
+    thread_pool<JOB, FUNC>::thread_pool(size_t cap, FUNC func)
+        : flg_active(false), workers(), jq(cap), handle(func) {
+        for (size_t i = 0; i < DEF_NUM_THREADS; i++) {
+            workers.emplace_back(std::jthread(handle));
         }
     }
-    template <size_t size, typename job_t, typename func_t>
-    int thread_pool<size, job_t, func_t>::submit_job(job_t job) {
-        if (jq.size() < jq.cap()) {
-            jq.add_job(job);
-
-            return 0;
-        }
-        return 1;
+ 
+    template <typename JOB, typename FUNC>
+    auto thread_pool<JOB, FUNC>::submit_job(const JOB& job) -> bool {
+        return jq.add_job(job);
     }
-    template <size_t size, typename job_t, typename func_t>
-    bool thread_pool<size, job_t, func_t>::terminate() {
-        should_run = false;
-        return !should_run;
-    }
-    template <size_t size, typename job_t, typename func_t>
-    void thread_pool<size, job_t, func_t>::thread_loop() {
-        while (true) {
-            if (!should_run) {
-                // cv.notify_all();
-                for (std::thread& active_thread : worker) {
-                    active_thread.join();
-                }
 
-                worker.clear();
-                return;
+    template <typename JOB, typename FUNC>
+    bool thread_pool<JOB, FUNC>::terminate() {
+        if (flg_active) {
+            flg_active = false;
+
+            for (auto& thr : workers) {
+                thr.request_stop();
             }
-            job_t j = jq.pop_job();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    template <typename JOB, typename FUNC>
+    void thread_pool<JOB, FUNC>::thread_loop() {
+        while (flg_active) {
+            JOB j = jq.pop_job();
+            
             if (j) {
                 handle(j);
             }
