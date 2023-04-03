@@ -1,10 +1,10 @@
 #ifndef thread_pool_HPP
 #define thread_pool_HPP
 
+#include <atomic>
 #include <cstddef>
 #include <mt/job_queue.hpp>
 #include <thread>
-#include <atomic>
 
 namespace mt {
     template <typename JOB, typename FUNC> class thread_pool {
@@ -32,14 +32,13 @@ namespace mt {
             workers.emplace_back(std::jthread(handle));
         }
     }
- 
-    template <typename JOB, typename FUNC>
-    auto thread_pool<JOB, FUNC>::submit_job(const JOB& job) -> bool {
+
+    template <typename JOB, typename FUNC> auto thread_pool<JOB, FUNC>::submit_job(const JOB& job)
+        -> bool {
         return jq.add_job(job);
     }
 
-    template <typename JOB, typename FUNC>
-    bool thread_pool<JOB, FUNC>::terminate() {
+    template <typename JOB, typename FUNC> bool thread_pool<JOB, FUNC>::terminate() {
         if (flg_active) {
             flg_active = false;
 
@@ -53,11 +52,10 @@ namespace mt {
         return false;
     }
 
-    template <typename JOB, typename FUNC>
-    void thread_pool<JOB, FUNC>::thread_loop() {
+    template <typename JOB, typename FUNC> void thread_pool<JOB, FUNC>::thread_loop() {
         while (flg_active) {
             JOB j = jq.pop_job();
-            
+
             if (j) {
                 handle(j);
             }
