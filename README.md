@@ -1,12 +1,14 @@
 # libmt
 The project provides common constructs that are useful for mtthreading.
 
+![shields.io](https://img.shields.io/badge/libmt-v1.0.0-orange)
 ![shields.io](https://img.shields.io/github/license/saltstack/salt)
 [![Actions Status](https://github.com/afsong/libmt/workflows/MacOS/badge.svg)](https://github.com/afsong/libmt/actions)
 [![Actions Status](https://github.com/afsong/libmt/workflows/Ubuntu/badge.svg)](https://github.com/afsong/libmt/actions)
 ![shields.io](https://img.shields.io/github/issues/afsong/libmt)
 [![codecov](https://codecov.io/gh/afsong/libmt/branch/master/graph/badge.svg)](https://codecov.io/gh/afsong/libmt)
 [![codeql](https://github.com/afsong/libmt/workflows/CodeQL/badge.svg)](https://github.com/afsong/libmt/actions)
+![shields.io]()
 
 
 ## Motivation
