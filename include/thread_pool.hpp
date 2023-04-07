@@ -3,7 +3,7 @@
 
 #include <atomic>
 #include <cstddef>
-#include <mt/job_queue.hpp>
+#include <job_queue.hpp>
 #include <thread>
 
 namespace mt {

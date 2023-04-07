@@ -8,7 +8,6 @@ The project provides common constructs that are useful for mtthreading.
 ![shields.io](https://img.shields.io/github/issues/afsong/libmt)
 [![codecov](https://codecov.io/gh/afsong/libmt/branch/master/graph/badge.svg)](https://codecov.io/gh/afsong/libmt)
 [![codeql](https://github.com/afsong/libmt/workflows/CodeQL/badge.svg)](https://github.com/afsong/libmt/actions)
-![shields.io]()
 
 
 ## Motivation
