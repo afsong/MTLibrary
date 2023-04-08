@@ -7,6 +7,11 @@
 #include <queue>
 
 namespace mt {
+    /**
+     * @brief A generic job queue structure that implements the classical consumer-producer pattern
+     * 
+     * @tparam T, the type of "job" that is transferred between the consumers and producers
+     */
     template <typename T> class job_queue {
       public:
         /**
