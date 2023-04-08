@@ -13,23 +13,22 @@ namespace mt {
 
         thread_pool(size_t cap, FUNC func);
         auto submit_job(const JOB& job) -> bool;
-        bool terminate();
+        auto terminate() -> bool;
 
       private:
         void thread_loop();
 
         std::atomic<bool> flg_active;
-        size_t queue_cap;
-        std::vector<std::jthread> workers;
+        std::vector<std::thread> workers;
         mt::job_queue<JOB> jq;
         FUNC handle;
     };
 
     template <typename JOB, typename FUNC>
     thread_pool<JOB, FUNC>::thread_pool(size_t cap, FUNC func)
-        : flg_active(false), workers(), jq(cap), handle(func) {
+        : flg_active(false), jq(cap), handle(func) {
         for (size_t i = 0; i < DEF_NUM_THREADS; i++) {
-            workers.emplace_back(std::jthread(handle));
+            workers.emplace_back(std::thread(handle));
         }
     }
 
@@ -38,14 +37,9 @@ namespace mt {
         return jq.add_job(job);
     }
 
-    template <typename JOB, typename FUNC> bool thread_pool<JOB, FUNC>::terminate() {
+    template <typename JOB, typename FUNC> auto thread_pool<JOB, FUNC>::terminate() -> bool {
         if (flg_active) {
             flg_active = false;
-
-            for (auto& thr : workers) {
-                thr.request_stop();
-            }
-
             return true;
         }
 
