@@ -8,8 +8,9 @@
 
 namespace mt {
     /**
-     * @brief a generic thread pool that continuously waits for jobs from the job queue and processes them
-     * 
+     * @brief a generic thread pool that continuously waits for jobs from the job queue and
+     * processes them
+     *
      * @tparam JOB the type of JOB that is transferred from the producer to thread pool
      * @tparam FUNC the type of function that will be used to handle the jobs
      */
@@ -19,7 +20,7 @@ namespace mt {
 
         /**
          * @brief Construct a new thread pool object
-         * 
+         *
          * @param cap capacity of the underlying job queue
          * @param func function handler that will be used to process the jobs
          */
@@ -27,7 +28,7 @@ namespace mt {
 
         /**
          * @brief Submit a new job to the thread pool
-         * 
+         *
          * @param job job to be submitted
          * @return true if job was successfully submitted
          * @return false if failed to submit job
@@ -36,9 +37,10 @@ namespace mt {
 
         /**
          * @brief Terminate the thread pool
-         * 
+         *
          * @return true if successfully terminated the pool
-         * @return false if failed to terminate the pool (most likely because it was already terminated)
+         * @return false if failed to terminate the pool (most likely because it was already
+         * terminated)
          */
         auto terminate() -> bool;
 
