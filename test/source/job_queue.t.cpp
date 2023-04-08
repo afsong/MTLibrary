@@ -1,6 +1,6 @@
 #include <doctest/doctest.h>
 
-#include <mt/job_queue.hpp>
+#include <job_queue.hpp>
 #include <thread>
 
 TEST_CASE("TestJobQueueConstructor") {
@@ -18,6 +18,7 @@ TEST_CASE("TestJobQueueAdd") {
     jq.add_job(10);
     CHECK_EQ(jq.size(), 2);
 }
+
 TEST_CASE("TestJobQueueAddAboveCap") {
     mt::job_queue<int> jq(100);
     for (int i = 0; i < 100; i++) {

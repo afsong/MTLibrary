@@ -5,7 +5,6 @@ from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 class mtRecipe(ConanFile):
     name = "mt"
     version = "1.0"
-
     # Optional metadata
     license = "Apache-2.0"
     author = "Annie Song afs2185@columbia.edu"
@@ -19,7 +18,7 @@ class mtRecipe(ConanFile):
     default_options = {"shared": False, "fPIC": True}
 
     # Sources are located in the same place as this recipe, copy them to the recipe
-    exports_sources = "CMakeLists.txt", "src/*", "include/*"
+    exports_sources = "CMakeLists.txt", "src/*", "include/*", "cmake/CPM.cmake", "cmake/tools.cmake"
 
     def config_options(self):
         if self.settings.os == "Windows":
