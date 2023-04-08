@@ -33,6 +33,19 @@ int main()
 }
 ```
 
+## How to download??
+`libmt` is packaged by Conan and deployed to a private GCP running artifactory.
+To access it, you can run the following command (make sure you have Conan
+installed!)
+
+
+```bash
+conan remote add artifactory http://35.188.34.82:8081/artifactory/api/conan/conan-libmt
+conan download mt -r=artifactory
+```
+
+And you can include it into your cpp project using Conan!
+
 <!-- [![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/MacOS/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
 [![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/Windows/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
 [![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/Ubuntu/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
