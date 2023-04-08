@@ -9,13 +9,47 @@
 namespace mt {
     template <typename T> class job_queue {
       public:
+        /**
+         * @brief Construct a new job queue object
+         * 
+         * @param cap capacity of the job queue
+         */
         job_queue(size_t cap);
 
+        /**
+         * @brief adds a new job to the queue
+         * 
+         * @param job new job to be placed onto the queue
+         * @return true if job was successfully added to the queue
+         * @return false if job failed to be added (queue is not active or queue is full)
+         */
         auto add_job(const T &job) -> bool;
+
+        /**
+         * @brief pops a job from the queue
+         * 
+         * @return T is the job returned. It's empty if failed to pop job 
+         */
         auto pop_job() -> T;
+
+        /**
+         * @brief marks the queue as inactive and notify all waiters
+         * 
+         */
         void stop_queue();
 
+        /**
+        * @brief  returns the size of the queue
+        * 
+        * @return size_t, the size of the queue
+        */
         [[nodiscard]] auto size() const -> size_t;
+
+        /**
+         * @brief return the capacity of the queue
+         * 
+         * @return size_t, the capacity of the queue 
+         */
         [[nodiscard]] auto cap() const -> size_t;
 
       private:
