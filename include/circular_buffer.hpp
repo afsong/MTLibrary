@@ -82,9 +82,7 @@ namespace mt {
         return buffer.size();
     }
 
-    template <typename T> auto circular_buffer<T>::cap() const -> size_t {
-        return capacity - 1;
-    }
+    template <typename T> auto circular_buffer<T>::cap() const -> size_t { return capacity - 1; }
 
     // private function, must be called with the mutex locked
     template <typename T> auto circular_buffer<T>::is_full() const -> bool {
