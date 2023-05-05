@@ -51,7 +51,10 @@ target_include_directories(
                          $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
 )
 
-set_target_properties(mt PROPERTIES PUBLIC_HEADER "include/job_queue.hpp;include/thread_pool.hpp")
+set_target_properties(
+  mt PROPERTIES PUBLIC_HEADER
+                "include/job_queue.hpp;include/thread_pool.hpp;include/circular_buffer.hpp"
+)
 
 # ---- Create an installable target ----
 # this allows users to install and find the library via `find_package()`.
