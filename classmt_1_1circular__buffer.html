@@ -53,7 +53,18 @@
           <div class="m-doc-template">template&lt;typename T&gt;</div>
           <span class="m-breadcrumb"><a href="namespacemt.html">mt</a>::<wbr/></span>circular_buffer <span class="m-thin">class</span>
         </h1>
-        <p><span></span></p>
+        <p>A generic circular buffer implementation. Similar to the job queue, it can be used to implement the consumer-producer pattern, but this implementation is cache-friendlier since we use a contiguous array as our data store.</p>
+        <table class="m-table m-fullwidth m-flat">
+          <thead>
+            <tr><th colspan="2">Template parameters</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="width: 1%">T</td>
+              <td>type of entry that is transferred between the consumers and producers.</td>
+            </tr>
+          </tbody>
+        </table>
         <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -69,36 +80,136 @@
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="aff5b7212a5d44bb7719c87f04e4a7945">
-              <span class="m-doc-wrap-bumper"><a href="#aff5b7212a5d44bb7719c87f04e4a7945" class="m-doc-self">circular_buffer</a>(</span><span class="m-doc-wrap">size_t cap)</span>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#aff5b7212a5d44bb7719c87f04e4a7945" class="m-doc">circular_buffer</a>(</span><span class="m-doc-wrap">size_t cap)</span>
             </dt>
-            <dd><span></span></dd>
+            <dd>Construct a new circular buffer object.</dd>
           </dl>
         </section>
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt id="acfc815aa5ce38117d05df7f18dde61e1">
-              <span class="m-doc-wrap-bumper">auto <a href="#acfc815aa5ce38117d05df7f18dde61e1" class="m-doc-self">add_entry</a>(</span><span class="m-doc-wrap">const T&amp; entry) -&gt; bool -&gt; auto</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#acfc815aa5ce38117d05df7f18dde61e1" class="m-doc">add_entry</a>(</span><span class="m-doc-wrap">const T&amp; entry) -&gt; bool -&gt; auto</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a90260322c46fa85d5b7d5f3dae2b5c88">
-              <span class="m-doc-wrap-bumper">auto <a href="#a90260322c46fa85d5b7d5f3dae2b5c88" class="m-doc-self">get_entry</a>(</span><span class="m-doc-wrap">) -&gt; T -&gt; auto</span>
+            <dd>Add a new entry to the buffer.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a90260322c46fa85d5b7d5f3dae2b5c88" class="m-doc">get_entry</a>(</span><span class="m-doc-wrap">) -&gt; T -&gt; auto</span>
             </dt>
-            <dd><span></span></dd>
+            <dd>Get an entry from the buffer.</dd>
             <dt id="a0a4050f7dd3464ef8bb10f2080ea2a14">
               <span class="m-doc-wrap-bumper">void <a href="#a0a4050f7dd3464ef8bb10f2080ea2a14" class="m-doc-self">stop_buffer</a>(</span><span class="m-doc-wrap">)</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a1af8217c62011da9b4f3362ffd451b66">
-              <span class="m-doc-wrap-bumper">auto <a href="#a1af8217c62011da9b4f3362ffd451b66" class="m-doc-self">size</a>(</span><span class="m-doc-wrap">) const -&gt; size_t -&gt; auto</span>
+            <dd>Mark the buffer as inactive and notify all waiters.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a1af8217c62011da9b4f3362ffd451b66" class="m-doc">size</a>(</span><span class="m-doc-wrap">) const -&gt; size_t -&gt; auto</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a2675e09e142d5bdbb6b0757472eec9e7">
-              <span class="m-doc-wrap-bumper">auto <a href="#a2675e09e142d5bdbb6b0757472eec9e7" class="m-doc-self">cap</a>(</span><span class="m-doc-wrap">) const -&gt; size_t -&gt; auto</span>
+            <dd>Return the number of entries in the buffer.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a2675e09e142d5bdbb6b0757472eec9e7" class="m-doc">cap</a>(</span><span class="m-doc-wrap">) const -&gt; size_t -&gt; auto</span>
             </dt>
-            <dd><span></span></dd>
+            <dd>Return the capacity of the buffer.</dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="aff5b7212a5d44bb7719c87f04e4a7945"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper"> mt::<wbr />circular_buffer&lt;T&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aff5b7212a5d44bb7719c87f04e4a7945" class="m-doc-self">circular_buffer</a>(</span><span class="m-doc-wrap">size_t cap)</span></span>
+            </h3>
+            <p>Construct a new circular buffer object.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">cap</td>
+                  <td>capacity of the circular buffer</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="acfc815aa5ce38117d05df7f18dde61e1"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto mt::<wbr />circular_buffer&lt;T&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#acfc815aa5ce38117d05df7f18dde61e1" class="m-doc-self">add_entry</a>(</span><span class="m-doc-wrap">const T&amp; entry) -&gt; bool</span></span>
+            </h3>
+            <p>Add a new entry to the buffer.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">entry</td>
+                  <td>new entry to be placed into the buffer</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>true if entry was successfully added to the buffer</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a90260322c46fa85d5b7d5f3dae2b5c88"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto mt::<wbr />circular_buffer&lt;T&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a90260322c46fa85d5b7d5f3dae2b5c88" class="m-doc-self">get_entry</a>(</span><span class="m-doc-wrap">) -&gt; T</span></span>
+            </h3>
+            <p>Get an entry from the buffer.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>T is the entry returned. It&#x27;s empty if failed to get entry</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a1af8217c62011da9b4f3362ffd451b66"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto mt::<wbr />circular_buffer&lt;T&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1af8217c62011da9b4f3362ffd451b66" class="m-doc-self">size</a>(</span><span class="m-doc-wrap">) const -&gt; size_t</span></span>
+            </h3>
+            <p>Return the number of entries in the buffer.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>size_t, the size of the queue</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a2675e09e142d5bdbb6b0757472eec9e7"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto mt::<wbr />circular_buffer&lt;T&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2675e09e142d5bdbb6b0757472eec9e7" class="m-doc-self">cap</a>(</span><span class="m-doc-wrap">) const -&gt; size_t</span></span>
+            </h3>
+            <p>Return the capacity of the buffer.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>size_t, the capacity of the buffer</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
         </section>
       </div>
     </div>
