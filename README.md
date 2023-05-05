@@ -1,7 +1,7 @@
 # libmt
 The project provides common constructs that are useful for mtthreading.
 
-![shields.io](https://img.shields.io/badge/libmt-v1.0.1-orange)
+![shields.io](https://img.shields.io/badge/libmt-v1.0.2-orange)
 [![shields.io](https://img.shields.io/badge/doc-blue)](https://afsong.github.io/libmt/)
 ![shields.io](https://img.shields.io/github/license/saltstack/salt)
 [![Actions Status](https://github.com/afsong/libmt/workflows/MacOS/badge.svg)](https://github.com/afsong/libmt/actions)
