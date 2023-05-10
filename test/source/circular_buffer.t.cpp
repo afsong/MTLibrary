@@ -24,5 +24,3 @@ TEST_CASE("TestCircularBufferGetEntry") {
     CHECK_EQ('a', buffer.get_entry());
     CHECK_EQ(buffer.size(), 0);
 }
-
-
