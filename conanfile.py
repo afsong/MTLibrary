@@ -4,7 +4,7 @@ from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 
 class mtRecipe(ConanFile):
     name = "mt"
-    version = "1.0.2"
+    version = "1.0.3"
     # Optional metadata
     license = "Apache-2.0"
     author = "Annie Song afs2185@columbia.edu"
