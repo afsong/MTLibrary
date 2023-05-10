@@ -3,6 +3,7 @@
 
 #include <atomic>
 #include <cstddef>
+#include <iostream>
 #include <job_queue.hpp>
 #include <thread>
 
@@ -25,6 +26,12 @@ namespace mt {
          * @param func function handler that will be used to process the jobs
          */
         thread_pool(size_t cap, FUNC func);
+
+        /**
+         * @brief Destroy the thread pool object
+         *
+         */
+        ~thread_pool();
 
         /**
          * @brief Submit a new job to the thread pool
@@ -55,9 +62,18 @@ namespace mt {
 
     template <typename JOB, typename FUNC>
     thread_pool<JOB, FUNC>::thread_pool(size_t cap, FUNC func)
-        : flg_active(false), jq(cap), handle(func) {
+        : flg_active(true), jq(cap), handle(func) {
         for (size_t i = 0; i < DEF_NUM_THREADS; i++) {
-            workers.emplace_back(std::thread(handle));
+            workers.emplace_back(&thread_pool<JOB, FUNC>::thread_loop, this);
+        }
+    }
+
+    template <typename JOB, typename FUNC> thread_pool<JOB, FUNC>::~thread_pool() {
+        terminate();
+        jq.stop_queue();
+
+        for (size_t i = 0; i < DEF_NUM_THREADS; ++i) {
+            workers[i].join();
         }
     }
 
