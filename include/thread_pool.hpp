@@ -64,12 +64,12 @@ namespace mt {
         /**
          * @brief copy assignment operator is deleted
          */
-        thread_pool& operator=(const thread_pool& pool) = delete;
+        auto operator=(const thread_pool& pool) -> thread_pool& = delete;
 
         /**
          * @brief move assignment operator is deleted
          */
-        thread_pool& operator=(thread_pool&& pool) = delete;
+        auto operator=(thread_pool&& pool) -> thread_pool& = delete;
 
       private:
         void thread_loop();
