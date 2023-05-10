@@ -18,40 +18,40 @@ namespace mt {
      * @subsection thread_pool Example
      * @code {.cpp}
      * #include <thread_pool.hpp>
-     * 
+     *
      * // recommended to declare a job type and a job func type
      * using job_t = int;
      * using job_func_t = std::function<void(int)>;
-     * 
+     *
      * // create a matching job handler
      * std::atomic<int> count;
      * void is_prime(int x)
      * {
      *     if (x <= 1) {
-     *         return;     
+     *         return;
      *     }
-     *      
+     *
      *     for (int i = 2; i * i <= x; ++i) {
      *         if (x % i == 0) {
      *             return;
      *         }
      *     }
-     *     
+     *
      *     ++count;
      * }
-     * 
+     *
      * // create a thread pool
      * mt::thread_pool<job_t, job_func_t> pool(1000, is_prime);
-     * 
+     *
      * // keep feeding it more job
      * int k = 0;
      * while (1) {
      *     pool.submit_job(k++);
      * }
-     * 
+     *
      * @endcode
-     * 
-     * 
+     *
+     *
      */
     template <typename JOB, typename FUNC> class thread_pool {
       public:
