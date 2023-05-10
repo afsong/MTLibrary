@@ -1,5 +1,4 @@
 /** @page about About
-  @section doc ModernCppStarter Documentation 
-  This is the auto-generated documentation for the initial project of the ModernCppStater.
-  It shows how we can use Doxygen to automatically build a browsable documentation for your projects.
+  @section doc libmt Documentation 
+  While C++ STL provides a lot of helpful features such as mutex and condition variable, it's lacking some helpful constructs that are build upon these low level objects. libmt aims at providing a low-overhead and modern implementations of common synchronization constructs that every multi-threaded program often needs.
 */
