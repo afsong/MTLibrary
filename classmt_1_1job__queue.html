@@ -53,21 +53,11 @@
           <div class="m-doc-template">template&lt;typename T&gt;</div>
           <span class="m-breadcrumb"><a href="namespacemt.html">mt</a>::<wbr/></span>job_queue <span class="m-thin">class</span>
         </h1>
-        <p>A generic job queue structure that implements the classical consumer-producer pattern.</p>
-        <table class="m-table m-fullwidth m-flat">
-          <thead>
-            <tr><th colspan="2">Template parameters</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="width: 1%">T</td>
-              <td>type of &quot;job&quot; that is transferred between the consumers and producers</td>
-            </tr>
-          </tbody>
-        </table>
+        <p>A generic job queue structure that implements the classical consumer-producer pattern. It&#x27;s thread-safe and can be used to transfer any type.</p>
         <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
+            <li><a href="#job_queue">Example</a></li>
             <li>
               Reference
               <ul>
@@ -77,6 +67,19 @@
             </li>
           </ul>
         </nav>
+<section id="job_queue"><h3><a href="#job_queue">Example</a></h3><pre class="m-code"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;job_queue.hpp&gt;</span>
+
+<span class="c1">// at most 100 integers can be placed on the queue</span>
+<span class="n">mt</span><span class="o">::</span><span class="n">job_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">jq</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+
+<span class="c1">// in some producer thread</span>
+<span class="n">jq</span><span class="p">.</span><span class="n">add_job</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// in some consumer thread</span>
+<span class="n">jq</span><span class="p">.</span><span class="n">pop_job</span><span class="p">();</span>
+
+<span class="c1">// to signal that a job queue is inactive and no more threads should use it</span>
+<span class="n">jq</span><span class="p">.</span><span class="n">stop_queue</span><span class="p">();</span></pre></section>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">

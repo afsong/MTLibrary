@@ -63,7 +63,7 @@
 <span class="w">    </span><span class="n">mt</span><span class="o">::</span><span class="n">job_queue</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span><span class="w"> </span><span class="n">jq</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// start using jq here :)</span>
-<span class="p">}</span></pre></section><section id="autotoc_md3"><h2><a href="#autotoc_md3">How to download??</a></h2><p><code>libmt</code> is packaged by Conan and deployed to a private GCP running artifactory. To access it, you can run the following command (make sure you have Conan installed!)</p><pre class="m-code">conan<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>artifactory<span class="w"> </span>http://35.188.34.82:8081/artifactory/api/conan/conan-libmt
+<span class="p">}</span></pre><p>For more detailed examples, check out the docs page linked above.</p></section><section id="autotoc_md3"><h2><a href="#autotoc_md3">How to download??</a></h2><p><code>libmt</code> is packaged by Conan and deployed to a private GCP running artifactory. To access it, you can run the following command (make sure you have Conan installed!)</p><pre class="m-code">conan<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>artifactory<span class="w"> </span>http://35.188.34.82:8081/artifactory/api/conan/conan-libmt
 conan<span class="w"> </span>download<span class="w"> </span>mt<span class="w"> </span>-r<span class="o">=</span>artifactory</pre><p>And you can include it into your cpp project using Conan!</p></section>
       </div>
     </div>

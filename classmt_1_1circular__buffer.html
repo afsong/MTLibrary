@@ -68,6 +68,7 @@
         <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
+            <li><a href="#circular_buffer">Example</a></li>
             <li>
               Reference
               <ul>
@@ -77,6 +78,26 @@
             </li>
           </ul>
         </nav>
+<section id="circular_buffer"><h3><a href="#circular_buffer">Example</a></h3><pre class="m-code"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;circular_buffer.hpp&gt;</span>
+
+<span class="c1">// instantiate a buffer</span>
+<span class="n">mt</span><span class="o">::</span><span class="n">circular_buffer</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">buffer</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+
+<span class="c1">// put some characters into it</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">buffer</span><span class="p">.</span><span class="n">add_entry</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">97</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">26</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// buffer is already full so this will block</span>
+<span class="n">buffer</span><span class="p">.</span><span class="n">add_entry</span><span class="p">(</span><span class="sc">&#39;a&#39;</span><span class="p">);</span>
+
+<span class="c1">// in some other thread</span>
+<span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="k">auto</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">.</span><span class="n">get_entry</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// do something useful with c</span>
+<span class="p">}</span>
+
+<span class="c1">// similar interface as job_queue: mark the buffer as inactive</span>
+<span class="n">buffer</span><span class="p">.</span><span class="n">stop_buffer</span><span class="p">();</span></pre></section>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
