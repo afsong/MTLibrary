@@ -51,6 +51,26 @@ namespace mt {
          */
         auto terminate() -> bool;
 
+        /**
+         * @brief Copy constructor is deleted
+         */
+        thread_pool(const thread_pool& pool) = delete;
+
+        /**
+         * @brief Move constructor is deleted
+         */
+        thread_pool(thread_pool&& pool) = delete;
+
+        /**
+         * @brief copy assignment operator is deleted
+         */
+        thread_pool& operator=(const thread_pool& pool) = delete;
+
+        /**
+         * @brief move assignment operator is deleted
+         */
+        thread_pool& operator=(thread_pool&& pool) = delete;
+
       private:
         void thread_loop();
 
