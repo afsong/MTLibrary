@@ -8,9 +8,30 @@
 
 namespace mt {
     /**
-     * @brief A generic job queue structure that implements the classical consumer-producer pattern
+     * @brief A generic job queue structure that implements the classical consumer-producer pattern. It's thread-safe and can be used to transfer any type. 
+     * 
+     * @subsection job_queue Example
+     * @code{.cpp}
+     * #include <job_queue.hpp>
+     * 
+     * // at most 100 integers can be placed on the queue
+     * mt::job_queue<int> jq(100);
+     * 
+     * // in some producer thread
+     * jq.add_job(1);
+     * 
+     * // in some consumer thread
+     * jq.pop_job();
+     * 
+     * // to signal that a job queue is inactive and no more threads should use it
+     * jq.stop_queue();
+     * 
+     * @endcode 
+     * 
      *
      * @tparam T, the type of "job" that is transferred between the consumers and producers
+     * 
+     * 
      */
     template <typename T> class job_queue {
       public:
