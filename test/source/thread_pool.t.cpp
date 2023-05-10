@@ -1,7 +1,6 @@
 #include <doctest/doctest.h>
 
 #include <functional>
-#include <iostream>
 #include <thread_pool.hpp>
 
 std::atomic<int> count;
