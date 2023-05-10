@@ -15,6 +15,31 @@ namespace mt {
      *
      * @tparam T, tye type of entry that is transferred between the consumers
      * and producers.
+     *
+     * @subsection circular_buffer Example
+     * @code{.cpp}
+     * #include <circular_buffer.hpp>
+     *
+     * // instantiate a buffer
+     * mt::circular_buffer<char> buffer(100);
+     *
+     * // put some characters into it
+     * for (int i = 0; i < 100; ++i) {
+     *     buffer.add_entry(static_cast<char>(97 + i % 26));
+     * }
+     *
+     * // buffer is already full so this will block
+     * buffer.add_entry('a');
+     *
+     * // in some other thread
+     * while ((auto c = buffer.get_entry())) {
+     *     // do something useful with c
+     * }
+     *
+     * // similar interface as job_queue: mark the buffer as inactive
+     * buffer.stop_buffer();
+     *
+     * @endcode
      */
     template <typename T> class circular_buffer {
       public:
@@ -79,13 +104,11 @@ namespace mt {
         : buffer(cap + 1), capacity(cap + 1), flg_active(true), head(0), tail(0) {}
 
     template <typename T> auto circular_buffer<T>::add_entry(const T& entry) -> bool {
-        std::lock_guard<std::mutex> lock(mutex);
+        std::unique_lock<std::mutex> lock(mutex);
+
+        cond.wait(lock, [this]() { return !flg_active || !this->is_full(); });
 
         if (!flg_active) {
-            return false;
-        }
-
-        if (this->is_full()) {
             return false;
         }
 
@@ -109,6 +132,8 @@ namespace mt {
         T ret = buffer[head];
 
         head = (head + 1) % capacity;
+
+        cond.notify_one();
 
         return ret;
     }
