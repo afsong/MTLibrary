@@ -24,7 +24,7 @@ cmake --build build/test --target fix-format
 ```
 
 ## General guideline on adding C++ code
-`libmt` welcomes any feature (that is not overengineered) from C++17 and beyond! This means more type safety, friendlier API that prevents user errors, and just cool language features that are here to stay. Therefore, in general, please avoid using old C++ features that are deemed outdated or bad style.
+`libmt` welcomes any feature (that is not over-engineered) from C++17 and beyond! This means more type safety, friendlier API that prevents user errors, and just cool language features that are here to stay. Therefore, in general, please avoid using old C++ features that are deemed outdated or bad style.
 
 It's also nice to follow the C++ Core Guidelines ([link](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)). Please check out the doc when you are in doubt!
 

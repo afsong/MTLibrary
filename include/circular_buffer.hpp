@@ -98,7 +98,7 @@ namespace mt {
     }
 
     template <typename T> auto circular_buffer<T>::get_entry() -> T {
-        std::lock_guard<std::mutex> lock(mutex);
+        std::unique_lock<std::mutex> lock(mutex);
 
         cond.wait(lock, [this]() { return !flg_active || !this->is_empty(); });
 
@@ -121,7 +121,12 @@ namespace mt {
 
     template <typename T> auto circular_buffer<T>::size() const -> size_t {
         std::lock_guard<std::mutex> lock(mutex);
-        return buffer.size();
+
+        if (tail >= head) {
+            return tail - head;
+        }
+
+        return tail + capacity - head;
     }
 
     template <typename T> auto circular_buffer<T>::cap() const -> size_t { return capacity - 1; }
