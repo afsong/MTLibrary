@@ -1,5 +1,5 @@
 # libmt
-The project provides common constructs that are useful for mtthreading.
+The project provides common constructs that are useful for multithreading.
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/afsong/libmt?color=orange)
 
@@ -17,10 +17,8 @@ The project provides common constructs that are useful for mtthreading.
 
 [![codeql](https://github.com/afsong/libmt/workflows/CodeQL/badge.svg)](https://github.com/afsong/libmt/actions)
 
-## Motivation
-STL does not provide much beyond basic threads and mutexes in terms of mtthreading support. My goal is to provide common constructs that are useful such as thread pools and job queues.
-
-The main focus as of now it to build something modular, that fits general purpose programming. After that, I'm planning on improving performance if time allows.
+## What is it??
+If you are tired of reinventing the wheel every time you write a small multithreaded program, because STL doesn't have stuff like thread pools, circular buffers, or a job queue, `libmt` can solve your problems! If you want a minimalistic, modern C++20 compatible, and low-overhead multithreaded library, take a look inside. We also support different build systems including CMake and Conan!
 
 ## How to use the library
 Everything in `libmt` resides in the `mt` namespace. For instance, if you'd like to get started with a multi-purpose job queue, you'd have to do this in your code:
