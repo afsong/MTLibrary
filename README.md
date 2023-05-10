@@ -37,6 +37,7 @@ int main()
     // start using jq here :)
 }
 ```
+For more detailed examples, check out the docs page linked above.
 
 ## How to download??
 `libmt` is packaged by Conan and deployed to a private GCP running artifactory.
