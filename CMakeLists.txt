@@ -1,5 +1,4 @@
-# cmake setup tutorial and template from 
-# https://github.com/TheLartians/ModernCppStarter
+# cmake setup tutorial and template from https://github.com/TheLartians/ModernCppStarter
 
 cmake_minimum_required(VERSION 3.14...3.22)
 
