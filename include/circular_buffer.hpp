@@ -124,9 +124,9 @@ namespace mt {
 
         if (tail >= head) {
             return tail - head;
-        } else {
-            return tail + capacity - head;
         }
+
+        return tail + capacity - head;
     }
 
     template <typename T> auto circular_buffer<T>::cap() const -> size_t { return capacity - 1; }
